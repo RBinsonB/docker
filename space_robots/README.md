@@ -114,6 +114,106 @@ Close the mast (camera arm)
 ros2 service call /mast_close std_srvs/srv/Empty
 ```
 
+### Lunar Pole Exploration Rover demo
+Launch the demo:
+```bash
+ros2 launch lunar_pole_exploration_rover lunar_pole_exploration_rover.launch.py
+```
+
+On the top left corner, click on the refresh button to show the different camera feeds.
+
+### Perform Tasks
+
+#### Setup
+
+Open a new terminal and attach to the currently running container:
+
+```bash
+docker exec -it <container-name> bash
+```
+
+Make sure packages are sourced:
+
+```bash
+source ~/spaceros/install/setup.bash
+```
+
+```bash
+source ~/demos_ws/install/setup.bash
+```
+
+#### Solar Panels
+The output of the solar panels can be checked by echoing the following topics.
+
+```bash
+ros2 topic echo /model/lunar_pole_exploration_rover/left_solar_panel/solar_panel_output
+ros2 topic echo /model/lunar_pole_exploration_rover/right_solar_panel/solar_panel_output
+ros2 topic echo /model/lunar_pole_exploration_rover/rear_solar_panel/solar_panel_output
+```
+
+#### Available Commands
+The rover has indenpendant steerable wheels and can execute a wide range of motion.
+
+Rotate the rover on place
+```bash
+ros2 service call /rotate_on_place std_srvs/srv/Empty
+```
+
+Drive the rover forward
+
+```bash
+ros2 service call /move_forward std_srvs/srv/Empty
+```
+
+Stop the rover
+
+```bash
+ros2 service call /move_stop std_srvs/srv/Empty
+```
+
+Turn left
+
+```bash
+ros2 service call /turn_left std_srvs/srv/Empty
+```
+
+Turn right
+
+```bash
+ros2 service call /turn_right std_srvs/srv/Empty
+```
+
+Move sideway to the left
+
+```bash
+ros2 service call /move_sideway_left std_srvs/srv/Empty
+```
+
+Move sideway to the right
+
+```bash
+ros2 service call /move_sideway_right std_srvs/srv/Empty
+```
+
+Combined motion (move sideway and turn to the left)
+
+```bash
+ros2 service call /move_sideway_and_turn_left std_srvs/srv/Empty
+```
+
+Center the navigation cameras
+
+```bash
+ros2 service call /camera_center std_srvs/srv/Empty
+```
+
+Move the navigations cameras around
+
+```bash
+ros2 service call /camera_rotate std_srvs/srv/Empty
+```
+
+
 #### Canadarm demo
 
 ```bash
